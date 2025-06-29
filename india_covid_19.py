@@ -5,8 +5,11 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from prophet import Prophet
 
-st.set_page_config(page_title="COVID-19 India Dashboard", layout="wide")
-
+st.set_page_config(
+    page_title="COVID-19 India Dashboard",
+    layout="wide",  # <- This sets desktop (wide) mode
+    initial_sidebar_state="expanded"
+)
 st.title("🦠 COVID-19 India Data Dashboard")
 
 
@@ -97,8 +100,8 @@ fig.update_layout(
         xanchor="right",
         x=1
     ),
-    plot_bgcolor='rgba(245,245,245,1)',
-    paper_bgcolor='rgba(255,255,255,1)',
+    plot_bgcolor='#0e1117',
+    paper_bgcolor='#0e1117',
     hovermode="x unified",
     margin=dict(t=100, b=80, l=80, r=80)
 )
