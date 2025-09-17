@@ -22,6 +22,8 @@ def load_data():
 data = load_data()
 
 data = data[data['State/UnionTerritory'].str.contains(r'\*',na=False) == False ]
+data = data[~data['State/UnionTerritory'].isin(['Cases being reassigned to states','Dadra and Nagar Haveli and Daman and Diu','Unassigned','Himanchal Pradesh','Telangana'])]
+data['State/UnionTerritory'] = data['State/UnionTerritory'].replace('Telengana', 'Telangana')
 cleaned_india_data=data[['State/UnionTerritory','Date','Cured','Deaths','Confirmed']].copy()
 cleaned_data = cleaned_india_data.groupby('Date')[['Cured','Deaths','Confirmed']].sum().reset_index()
 cleaned_data['Recover Rate'] = cleaned_data['Cured'] / cleaned_data['Confirmed'] * 100
