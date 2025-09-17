@@ -21,6 +21,7 @@ def load_data():
 
 data = load_data()
 
+data = data[data['State/UnionTerritory'].str.contains(r'\*',na=False) == False ]
 cleaned_india_data=data[['State/UnionTerritory','Date','Cured','Deaths','Confirmed']].copy()
 cleaned_data = cleaned_india_data.groupby('Date')[['Cured','Deaths','Confirmed']].sum().reset_index()
 cleaned_data['Recover Rate'] = cleaned_data['Cured'] / cleaned_data['Confirmed'] * 100
